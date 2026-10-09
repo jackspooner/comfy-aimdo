@@ -46,6 +46,8 @@ TESTS = (
     "malloc-graph-leak-subgraph-cuda.py",
     "malloc-graph-rogue-event-splice-cuda.py",
     "malloc-graph-rogue-alias-cuda.py",
+    "malloc-graph-repeated-rogue-alias-cuda.py",
+    "malloc-graph-rogue-failure-cuda.py",
     "malloc-graph-rogue-reuse-cuda.py",
     "malloc-graph-small-rogue-cuda.py",
     "malloc-graph-abort-cuda.py",

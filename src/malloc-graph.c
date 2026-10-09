@@ -736,7 +736,15 @@ static bool finalize_rogues(MallocGraph *g) {
             continue;
         }
 
-        if (physical_page_unref(g->mapped_pages[va])) {
+        /* Earlier handoffs leave black-hole aliases unmapped while their
+         * escaped allocations own the old pages. A later handoff can replace
+         * the same physical slot through another alias; there is no graph
+         * mapping to release again at the old black hole. */
+        if (!g->mapped_pages[va] && !g->black_holes[va]) {
+            remap_failed = true;
+            continue;
+        }
+        if (g->mapped_pages[va] && physical_page_unref(g->mapped_pages[va])) {
             remap_failed = true;
             continue;
         }

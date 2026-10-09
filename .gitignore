@@ -8,3 +8,8 @@ build/
 dist/
 *.egg-info/
 .venv/
+
+__pycache__/
+.agents/
+.claude/
+comfy_aimdo/_version.py

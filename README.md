@@ -1,5 +1,27 @@
 # AI Model Dynamic Offloader
 
+## Workspace2 fork
+
+This fork is based on [Comfy-Org/comfy-aimdo](https://github.com/Comfy-Org/comfy-aimdo)
+v0.5.5. The [upstream README](https://github.com/Comfy-Org/comfy-aimdo/blob/v0.5.5/README.md)
+describes its PyTorch allocator, on-demand weight offloading and CUDA/HIP support;
+that description is retained below. Upstream attribution and GPL licensing remain.
+
+The fork fixes repeated escaped-allocation handoff: graph aliases already
+unmapped by a prior handoff are not released twice. Unexpected missing mappings
+still report a compile error. Python APIs and dynamic offloading remain unchanged.
+CUDA regression tests cover repeated handoff, escaped tensor contents, replay,
+abort/destruction and replacement allocation/map failures.
+
+The fork also adds reproducible Linux worktree preparation from a verified, separately
+provisioned funchook archive. Run `python3 scripts/setup_worktree.py`; see
+[development requirements and validation](AGENTS.md). Setup builds local libraries
+only. It does not deploy them or establish GPU inference readiness. See the
+[allocator operations skill](skills/comfy-aimdo-allocator/SKILL.md) for regression
+tests, artifact identity and activation precautions. Linux CUDA is the local target;
+HIP and Windows behavior require separate verification. See the
+[local validation record and upstream test limitations](docs/linux-validation.md).
+
 This project is a pytorch VRAM allocator that implements on-demand offloading of model weights when the primary pytorch VRAM allocator comes under pressure.
 
 ## Support:
