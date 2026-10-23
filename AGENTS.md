@@ -8,7 +8,4 @@ CUDA/HIP libraries without downloading, touching a service or starting inference
 It is safe to repeat. CUDA tests require an explicitly prepared PyTorch runtime
 and an idle, coordinated GPU; run `PYTHONPATH=. <python> tests/run-malloc-graph-cuda.py`.
 
-After preparation use managed GitNexus ensure for this exact checkout with
-embeddings disabled. Maintain reusable guidance under `skills/`; register only
-the integrated canonical folder using `skills register`, then `skills reconcile`
-and `skills doctor`. Preserve upstream attribution and license.
+Allocator regression and activation guidance lives in `skills/comfy-aimdo-allocator/`. Preserve upstream attribution and license.
